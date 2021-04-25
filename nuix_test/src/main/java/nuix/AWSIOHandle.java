@@ -24,7 +24,7 @@ import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
 
-public class AWSDownloadFile {
+public class AWSIOHandle {
 	 AmazonS3 s3client = null;
 	
 	String AWS_ACCESSID="";
@@ -33,7 +33,7 @@ public class AWSDownloadFile {
 	
 
 
-	public AWSDownloadFile(String AWS_ACCESSID, String AWS_SECRETID, String AWS_REGION) {
+	public AWSIOHandle(String AWS_ACCESSID, String AWS_SECRETID, String AWS_REGION) {
 		
 		this.AWS_ACCESSID=AWS_ACCESSID;
 		this.AWS_SECRETID=AWS_SECRETID;
@@ -71,6 +71,16 @@ public class AWSDownloadFile {
 		}
 
 	}
+	
+	public  void uploadDataToS3(String BUCKETNAME,String key,String localPath) {
+		
+		System.out.println("Uploading "+localPath+" to "+BUCKETNAME);
+		s3client.putObject(
+				BUCKETNAME, 
+				  key, 
+				  new File(localPath)
+				);
+	}
 
 	public  void getDataFromS3(String BUCKETNAME) {
 		try {
@@ -83,7 +93,7 @@ public class AWSDownloadFile {
 
 			System.out.println("Listing objects");
 
-			ListObjectsV2Request req = new ListObjectsV2Request().withBucketName(BUCKETNAME).withMaxKeys(1);
+			ListObjectsV2Request req = new ListObjectsV2Request().withBucketName(BUCKETNAME).withMaxKeys(5);
 			ListObjectsV2Result result;
 
 			do {
