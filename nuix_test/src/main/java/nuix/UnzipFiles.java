@@ -47,6 +47,7 @@ public class UnzipFiles {
 			ZipEntry zipEntry = zis.getNextEntry();
 			while (zipEntry != null) {
 
+				System.out.println(destDir+ zipEntry.getName());
 				File newFile = new File(destDir, zipEntry.getName());
 				// write file content
 				if (!newFile.exists()) {

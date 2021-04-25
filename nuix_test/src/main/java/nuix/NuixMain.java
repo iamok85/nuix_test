@@ -36,7 +36,11 @@ public class NuixMain {
 		UnzipFiles unzip=new UnzipFiles();
 		ArrayList fileList=unzip.doUnzip(Utils.FILEPATH);
 		
+		
 
+			 System.out.println(Utils.FILEPATH+fileList.get(0));
+			 
+	
 	}
    
 	

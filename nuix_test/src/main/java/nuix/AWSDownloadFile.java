@@ -45,7 +45,7 @@ public class AWSDownloadFile {
 		System.out.println("Downloading object " + keyName);
 		try {
 			File file = new File(Utils.FILEPATH + keyName);
-			if (!file.exists()) {
+			
 				S3Object o = s3client.getObject(Utils.BUCKETNAME, keyName);
 				S3ObjectInputStream s3is = o.getObjectContent();
 				FileOutputStream fos = new FileOutputStream(file);
@@ -58,11 +58,7 @@ public class AWSDownloadFile {
 				fos.close();
 				System.out.println("Object downloaded " + keyName);
 
-			}else {
-				
-				System.out.println("Object " + keyName+" is already exist.");
-				
-			}
+	
 		} catch (AmazonServiceException e) {
 			System.err.println(e.getErrorMessage());
 			System.exit(1);
