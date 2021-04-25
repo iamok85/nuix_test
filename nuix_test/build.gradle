@@ -6,6 +6,7 @@
  * User Manual available at https://docs.gradle.org/6.3/userguide/java_library_plugin.html
  */
 apply plugin: 'java'
+apply plugin: 'application'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
@@ -15,6 +16,13 @@ repositories {
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
 }
+
+mainClassName="nuix.NuixMain"
+sourceSets {
+    main.java.srcDir "src/main/java"
+    main.resources.srcDir "src/main/resources"
+}
+
 
 dependencies {
     // This dependency is exported to consumers, that is to say found on their compile classpath.
